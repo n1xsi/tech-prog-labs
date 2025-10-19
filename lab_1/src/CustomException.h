@@ -1,8 +1,13 @@
-//
-// Created by Administrator on 18.10.2025.
-//
+#pragma once
+#include <exception>
+#include <string>
 
-#ifndef TECH_PROG_LABS_CUSTOMEXCEPTION_H
-#define TECH_PROG_LABS_CUSTOMEXCEPTION_H
-
-#endif //TECH_PROG_LABS_CUSTOMEXCEPTION_H
+class CustomException : public std::exception {
+private:
+    std::string message;
+public:
+    CustomException(const std::string& msg) : message(msg) {}
+    virtual const char* what() const noexcept override {
+            return message.c_str();
+    }
+};
