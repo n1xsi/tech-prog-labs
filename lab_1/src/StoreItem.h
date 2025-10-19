@@ -1,8 +1,25 @@
-//
-// Created by Administrator on 18.10.2025.
-//
+#pragma once
+#include <iostream>
+#include <fstream>
+#include <string>
 
-#ifndef TECH_PROG_LABS_STOREITEM_H
-#define TECH_PROG_LABS_STOREITEM_H
+class StoreItem {
+protected:
+    double price;
+public:
+    StoreItem();
+    StoreItem(double price);
+    StoreItem(const StoreItem& other);
+    virtual ~StoreItem();
 
-#endif //TECH_PROG_LABS_STOREITEM_H
+    void setPrice(double p);
+    double getPrice() const;
+
+    // Чисто виртуальные функции для полиморфизма
+    virtual void display() const = 0;
+    virtual void save(std::ofstream& fout) const = 0;
+    virtual void load(std::ifstream& fin) = 0;
+
+    // Виртуальные функции для ввода с консоли
+    virtual void input() = 0;
+};
