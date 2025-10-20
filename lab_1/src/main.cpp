@@ -1,5 +1,7 @@
 #include <iostream>
 #include <limits>
+#include <windows.h>
+
 #include "Keeper.h"
 #include "Book.h"
 #include "Textbook.h"
@@ -8,9 +10,9 @@
 
 void showMenu() {
     std::cout << "\n======== Меню ========\n";
-    std::cout << "1. Добавить \uD83D\uDCDAкнигу\n";
-    std::cout << "2. Добавить \uD83D\uDCD3учебник\n";
-    std::cout << "3. Добавить \uD83D\uDCCCканцелярию\n";
+    std::cout << "1. Добавить книгу\n";
+    std::cout << "2. Добавить учебник\n";
+    std::cout << "3. Добавить канцелярию\n";
     std::cout << "4. Показать все товары\n";
     std::cout << "5. Удалить товар по номеру\n";
     std::cout << "6. Сохранить в файл\n";

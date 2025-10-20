@@ -4,8 +4,10 @@
 #include <string>
 
 class StoreItem {
+
 protected:
     double price;
+
 public:
     StoreItem();
     StoreItem(double price);
@@ -22,4 +24,5 @@ public:
 
     // Виртуальные функции для ввода с консоли
     virtual void input() = 0;
+
 };

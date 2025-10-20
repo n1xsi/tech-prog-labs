@@ -21,7 +21,7 @@ Book::~Book() {
 }
 
 void Book::display() const {
-    std::cout << "\uD83D\uDCDA Книга" << std::endl;
+    std::cout << "Книга" << std::endl;
     std::cout << "Название: " << title << std::endl;
     std::cout << "Автор: " << author << std::endl;
     std::cout << "Год выпуска: " << year << std::endl;
