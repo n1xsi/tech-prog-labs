@@ -21,7 +21,7 @@ Textbook::~Textbook() {
 }
 
 void Textbook::display() const {
-    std::cout << "\uD83D\uDCD3 Учебник" << std::endl;
+    std::cout << "Учебник" << std::endl;
     std::cout << "Название: " << title << std::endl;
     std::cout << "Автор: " << author << std::endl;
     std::cout << "Год выпуска: " << year << std::endl;
