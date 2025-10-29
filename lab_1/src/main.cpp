@@ -22,7 +22,6 @@ void showMenu() {
 }
 
 int main() {
-    // setlocale(LC_ALL, "Russian");
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 
@@ -33,7 +32,6 @@ int main() {
         showMenu();
         std::cin >> choice;
 
-        // Проверка на корректность ввода
         if (std::cin.fail()) {
             std::cout << "Ошибка: введено не число. Попробуйте снова.\n";
             std::cin.clear();
