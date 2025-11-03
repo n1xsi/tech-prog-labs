@@ -14,9 +14,10 @@ public:
     Stationery(const Stationery& other);
     ~Stationery();
 
-    void display() const override;
+    void print(std::ostream& os) const override;
     void save(std::ofstream& fout) const override;
     void load(std::ifstream& fin) override;
     void input() override;
+    StoreItem* clone() const override;
 
 };

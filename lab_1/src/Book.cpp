@@ -20,15 +20,15 @@ Book::~Book() {
     std::cout << "Book: Destructor called." << std::endl;
 }
 
-void Book::display() const {
-    std::cout << "Книга" << std::endl;
-    std::cout << "Название: " << title << std::endl;
-    std::cout << "Автор: " << author << std::endl;
-    std::cout << "Год выпуска: " << year << std::endl;
-    std::cout << "Жанр: " << genre << std::endl;
-    std::cout << "Аннотация: " << annotation << std::endl;
-    std::cout << "Кол-во страниц: " << pages << std::endl;
-    std::cout << "Цена: " << price << " ₽" << std::endl;
+void Book::print(std::ostream& os) const {
+    os << "Книга" << std::endl;
+    os << "Название: " << title << std::endl;
+    os << "Автор: " << author << std::endl;
+    os << "Год выпуска: " << year << std::endl;
+    os << "Жанр: " << genre << std::endl;
+    os << "Аннотация: " << annotation << std::endl;
+    os << "Количество страниц: " << pages << std::endl;
+    os << "Цена: " << price << " ₽" << std::endl;
 }
 
 void Book::save(std::ofstream& fout) const {

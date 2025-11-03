@@ -24,3 +24,9 @@ void StoreItem::setPrice(double p) {
 double StoreItem::getPrice() const {
     return price;
 }
+
+// Функция, вызывающая виртуальный метод print для нужного объекта
+std::ostream& operator<<(std::ostream& os, const StoreItem& item) {
+    item.print(os);
+    return os;
+}

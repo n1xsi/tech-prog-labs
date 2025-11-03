@@ -10,6 +10,41 @@ Keeper::Keeper() : items(nullptr), size(0) {
     std::cout << "Keeper: Default constructor called." << std::endl;
 }
 
+// Конструктор копирования
+Keeper::Keeper(const Keeper& other) : size(other.size) {
+    std::cout << "Keeper: Copy constructor called." << std::endl;
+    items = new StoreItem*[size];
+    for (int i = 0; i < size; ++i) {
+        // Использование виртуального метода clone для создания копии нужного типа
+        items[i] = other.items[i]->clone();
+    }
+}
+
+// Оператор присваивания
+Keeper& Keeper::operator=(const Keeper& other) {
+    std::cout << "Keeper: Assignment operator called." << std::endl;
+    // Проверка на самоприсваивание
+    if (this == &other) {
+        return *this;
+    }
+
+    // Освобождение старой памяти
+    for (int i = 0; i < size; ++i) {
+        delete items[i];
+    }
+    delete[] items;
+
+    // Копирование данных из other
+    size = other.size;
+    items = new StoreItem*[size];
+    for (int i = 0; i < size; ++i) {
+        items[i] = other.items[i]->clone();
+    }
+
+    // Возврат ссылки на текущий объект
+    return *this;
+}
+
 Keeper::~Keeper() {
     for (int i = 0; i < size; ++i) {
         delete items[i];
@@ -54,7 +89,7 @@ void Keeper::displayAll() const {
     }
     for (int i = 0; i < size; ++i) {
         std::cout << "\n--- Элемент #" << i + 1 << " ---" << std::endl;
-        items[i]->display();
+        std::cout << *(items[i]);
     }
 }
 

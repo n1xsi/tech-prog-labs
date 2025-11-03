@@ -20,15 +20,15 @@ Textbook::~Textbook() {
     std::cout << "Textbook: Destructor called." << std::endl;
 }
 
-void Textbook::display() const {
-    std::cout << "Учебник" << std::endl;
-    std::cout << "Название: " << title << std::endl;
-    std::cout << "Автор: " << author << std::endl;
-    std::cout << "Год выпуска: " << year << std::endl;
-    std::cout << "Учебное заведение: " << institution << std::endl;
-    std::cout << "Год обучения (класс): " << grade << std::endl;
-    std::cout << "Количество страниц: " << pages << std::endl;
-    std::cout << "Цена: " << price << " ₽" << std::endl;
+void Textbook::print(std::ostream& os) const {
+    os << "Учебник" << std::endl;
+    os << "Название: " << title << std::endl;
+    os << "Автор: " << author << std::endl;
+    os << "Год выпуска: " << year << std::endl;
+    os << "Учебное заведение: " << institution << std::endl;
+    os << "Год обучения (класс): " << grade << std::endl;
+    os << "Количество страниц: " << pages << std::endl;
+    os << "Цена: " << price << " ₽" << std::endl;
 }
 
 void Textbook::save(std::ofstream& fout) const {
