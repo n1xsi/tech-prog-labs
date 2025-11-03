@@ -19,12 +19,12 @@ Stationery::~Stationery() {
     std::cout << "Stationery: Destructor called." << std::endl;
 }
 
-void Stationery::display() const {
-    std::cout << "Канцелярия" << std::endl;
-    std::cout << "Тип: " << type << std::endl;
-    std::cout << "Цвет: " << color << std::endl;
-    std::cout << "Назначение: " << purpose << std::endl;
-    std::cout << "Цена: " << price << " ₽" << std::endl;
+void Stationery::print(std::ostream& os) const {
+    os << "Канцелярия" << std::endl;
+    os << "Тип: " << type << std::endl;
+    os << "Цвет: " << color << std::endl;
+    os << "Назначение: " << purpose << std::endl;
+    os << "Цена: " << price << " ₽" << std::endl;
 }
 
 void Stationery::save(std::ofstream& fout) const {
