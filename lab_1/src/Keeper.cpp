@@ -10,38 +10,38 @@ Keeper::Keeper() : items(nullptr), size(0) {
     std::cout << "Keeper: Default constructor called." << std::endl;
 }
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+// Конструктор копирования
 Keeper::Keeper(const Keeper& other) : size(other.size) {
     std::cout << "Keeper: Copy constructor called." << std::endl;
     items = new StoreItem*[size];
     for (int i = 0; i < size; ++i) {
-        // РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РІРёСЂС‚СѓР°Р»СЊРЅРѕРіРѕ РјРµС‚РѕРґР° clone РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РєРѕРїРёРё РЅСѓР¶РЅРѕРіРѕ С‚РёРїР°
+        // Использование виртуального метода clone для создания копии нужного типа
         items[i] = other.items[i]->clone();
     }
 }
 
-// РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
+// Оператор присваивания
 Keeper& Keeper::operator=(const Keeper& other) {
     std::cout << "Keeper: Assignment operator called." << std::endl;
-    // РџСЂРѕРІРµСЂРєР° РЅР° СЃР°РјРѕРїСЂРёСЃРІР°РёРІР°РЅРёРµ
+    // Проверка на самоприсваивание
     if (this == &other) {
         return *this;
     }
 
-    // РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ СЃС‚Р°СЂРѕР№ РїР°РјСЏС‚Рё
+    // Освобождение старой памяти
     for (int i = 0; i < size; ++i) {
         delete items[i];
     }
     delete[] items;
 
-    // РљРѕРїРёСЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· other
+    // Копирование данных из other
     size = other.size;
     items = new StoreItem*[size];
     for (int i = 0; i < size; ++i) {
         items[i] = other.items[i]->clone();
     }
 
-    // Р’РѕР·РІСЂР°С‚ СЃСЃС‹Р»РєРё РЅР° С‚РµРєСѓС‰РёР№ РѕР±СЉРµРєС‚
+    // Возврат ссылки на текущий объект
     return *this;
 }
 
@@ -84,11 +84,11 @@ void Keeper::remove(int index) {
 
 void Keeper::displayAll() const {
     if (size == 0) {
-        std::cout << "РљР°С‚Р°Р»РѕРі РїСѓСЃС‚." << std::endl;
+        std::cout << "Каталог пуст." << std::endl;
         return;
     }
     for (int i = 0; i < size; ++i) {
-        std::cout << "\n--- Р­Р»РµРјРµРЅС‚ #" << i + 1 << " ---" << std::endl;
+        std::cout << "\n--- Элемент #" << i + 1 << " ---" << std::endl;
         std::cout << *(items[i]);
     }
 }
@@ -101,16 +101,16 @@ void Keeper::saveToFile(const std::string& filename) const {
     fout << size << std::endl;
     for (int i = 0; i < size; ++i) {
         if (dynamic_cast<Book*>(items[i])) {
-            fout << 1 << std::endl; // 1 РґР»СЏ Book
+            fout << 1 << std::endl; // 1 для Book
         } else if (dynamic_cast<Textbook*>(items[i])) {
-            fout << 2 << std::endl; // 2 РґР»СЏ Textbook
+            fout << 2 << std::endl; // 2 для Textbook
         } else if (dynamic_cast<Stationery*>(items[i])) {
-            fout << 3 << std::endl; // 3 РґР»СЏ Stationery
+            fout << 3 << std::endl; // 3 для Stationery
         }
         items[i]->save(fout);
     }
     fout.close();
-    std::cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹ РІ С„Р°Р№Р» " << filename << std::endl;
+    std::cout << "Данные успешно сохранены в файл " << filename << std::endl;
 }
 
 void Keeper::loadFromFile(const std::string& filename) {
@@ -119,7 +119,7 @@ void Keeper::loadFromFile(const std::string& filename) {
         throw CustomException("Error: Could not open file for reading.");
     }
 
-    // РћС‡РёСЃС‚РєР° С‚РµРєСѓС‰РёС… РґР°РЅРЅС‹С…
+    // Очистка текущих данных
     for (int i = 0; i < size; ++i) {
         delete items[i];
     }
@@ -147,7 +147,7 @@ void Keeper::loadFromFile(const std::string& filename) {
         add(newItem);
     }
     fin.close();
-    std::cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅС‹ РёР· С„Р°Р№Р»Р° " << filename << std::endl;
+    std::cout << "Данные успешно загружены из файла " << filename << std::endl;
 }
 
 int Keeper::getSize() const {

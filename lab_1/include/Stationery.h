@@ -12,7 +12,7 @@ public:
     Stationery(const Stationery& other);
     ~Stationery();
 
-    // Р РµР°Р»РёР·Р°С†РёСЏ РІРёСЂС‚СѓР°Р»СЊРЅС‹Р¶ С„СѓРЅРєС†РёР№ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР°
+    // Реализация виртуальныж функций базового класса
     void print(std::ostream& os) const override;
     void save(std::ofstream& fout) const override;
     void load(std::ifstream& fin) override;

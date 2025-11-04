@@ -10,8 +10,8 @@ private:
 
 public:
     Keeper();
-    Keeper(const Keeper& other);             // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
-    Keeper& operator=(const Keeper& other);  // РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
+    Keeper(const Keeper& other);             // Конструктор копирования
+    Keeper& operator=(const Keeper& other);  // Оператор присваивания
     ~Keeper();
 
     void add(StoreItem* newItem);

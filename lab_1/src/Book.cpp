@@ -21,14 +21,14 @@ Book::~Book() {
 }
 
 void Book::print(std::ostream& os) const {
-    os << "ÐšÐ½Ð¸Ð³Ð°" << std::endl;
-    os << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ: " << title << std::endl;
-    os << "ÐÐ²Ñ‚Ð¾Ñ€: " << author << std::endl;
-    os << "Ð“Ð¾Ð´ Ð²Ñ‹Ð¿ÑƒÑÐºÐ°: " << year << std::endl;
-    os << "Ð–Ð°Ð½Ñ€: " << genre << std::endl;
-    os << "ÐÐ½Ð½Ð¾Ñ‚Ð°Ñ†Ð¸Ñ: " << annotation << std::endl;
-    os << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†: " << pages << std::endl;
-    os << "Ð¦ÐµÐ½Ð°: " << price << " â‚½" << std::endl;
+    os << "Êíèãà" << std::endl;
+    os << "Íàçâàíèå: " << title << std::endl;
+    os << "Àâòîð: " << author << std::endl;
+    os << "Ãîä âûïóñêà: " << year << std::endl;
+    os << "Æàíð: " << genre << std::endl;
+    os << "Àííîòàöèÿ: " << annotation << std::endl;
+    os << "Êîëè÷åñòâî ñòðàíèö: " << pages << std::endl;
+    os << "Öåíà: " << price << " ðóá." << std::endl;
 }
 
 StoreItem* Book::clone() const {
@@ -58,12 +58,12 @@ void Book::load(std::ifstream& fin) {
 }
 
 void Book::input() {
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ: "; std::getline(std::cin, title);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð°: "; std::getline(std::cin, author);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ð¾Ð´ Ð²Ñ‹Ð¿ÑƒÑÐºÐ°: "; std::cin >> year; std::cin.ignore();
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¶Ð°Ð½Ñ€: "; std::getline(std::cin, genre);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð°Ð½Ð½Ð¾Ñ‚Ð°Ñ†Ð¸ÑŽ: "; std::getline(std::cin, annotation);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»-Ð²Ð¾ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†: "; std::cin >> pages;
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ½Ñƒ: "; std::cin >> price;
+    std::cout << "Ââåäèòå íàçâàíèå: "; std::getline(std::cin, title);
+    std::cout << "Ââåäèòå àâòîðà: "; std::getline(std::cin, author);
+    std::cout << "Ââåäèòå ãîä âûïóñêà: "; std::cin >> year; std::cin.ignore();
+    std::cout << "Ââåäèòå æàíð: "; std::getline(std::cin, genre);
+    std::cout << "Ââåäèòå àííîòàöèþ: "; std::getline(std::cin, annotation);
+    std::cout << "Ââåäèòå êîë-âî ñòðàíèö: "; std::cin >> pages;
+    std::cout << "Ââåäèòå öåíó: "; std::cin >> price;
     std::cin.ignore();
 }

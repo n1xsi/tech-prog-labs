@@ -21,14 +21,14 @@ Textbook::~Textbook() {
 }
 
 void Textbook::print(std::ostream& os) const {
-    os << "Ð£Ñ‡ÐµÐ±Ð½Ð¸Ðº" << std::endl;
-    os << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ: " << title << std::endl;
-    os << "ÐÐ²Ñ‚Ð¾Ñ€: " << author << std::endl;
-    os << "Ð“Ð¾Ð´ Ð²Ñ‹Ð¿ÑƒÑÐºÐ°: " << year << std::endl;
-    os << "Ð£Ñ‡ÐµÐ±Ð½Ð¾Ðµ Ð·Ð°Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ: " << institution << std::endl;
-    os << "Ð“Ð¾Ð´ Ð¾Ð±ÑƒÑ‡ÐµÐ½Ð¸Ñ (ÐºÐ»Ð°ÑÑ): " << grade << std::endl;
-    os << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†: " << pages << std::endl;
-    os << "Ð¦ÐµÐ½Ð°: " << price << " â‚½" << std::endl;
+    os << "Ó÷åáíèê" << std::endl;
+    os << "Íàçâàíèå: " << title << std::endl;
+    os << "Àâòîð: " << author << std::endl;
+    os << "Ãîä âûïóñêà: " << year << std::endl;
+    os << "Ó÷åáíîå çàâåäåíèå: " << institution << std::endl;
+    os << "Ãîä îáó÷åíèÿ (êëàññ): " << grade << std::endl;
+    os << "Êîëè÷åñòâî ñòðàíèö: " << pages << std::endl;
+    os << "Öåíà: " << price << " ðóá." << std::endl;
 }
 
 StoreItem* Textbook::clone() const {
@@ -59,12 +59,12 @@ void Textbook::load(std::ifstream& fin) {
 }
 
 void Textbook::input() {
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ: "; std::getline(std::cin, title);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð°: "; std::getline(std::cin, author);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ð¾Ð´ Ð²Ñ‹Ð¿ÑƒÑÐºÐ°: "; std::cin >> year; std::cin.ignore();
-    std::cout << "Ð”Ð»Ñ ÐºÐ°ÐºÐ¾Ð³Ð¾ ÑƒÑ‡ÐµÐ±Ð½Ð¾Ð³Ð¾ Ð·Ð°Ð²ÐµÐ´ÐµÐ½Ð¸Ñ: "; std::getline(std::cin, institution);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ð¾Ð´ Ð¾Ð±ÑƒÑ‡ÐµÐ½Ð¸Ñ (ÐºÐ»Ð°ÑÑ): "; std::cin >> grade;
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»-Ð²Ð¾ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†: "; std::cin >> pages;
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ½Ñƒ: "; std::cin >> price;
+    std::cout << "Ââåäèòå íàçâàíèå: "; std::getline(std::cin, title);
+    std::cout << "Ââåäèòå àâòîðà: "; std::getline(std::cin, author);
+    std::cout << "Ââåäèòå ãîä âûïóñêà: "; std::cin >> year; std::cin.ignore();
+    std::cout << "Äëÿ êàêîãî ó÷åáíîãî çàâåäåíèÿ: "; std::getline(std::cin, institution);
+    std::cout << "Ââåäèòå ãîä îáó÷åíèÿ (êëàññ): "; std::cin >> grade;
+    std::cout << "Ââåäèòå êîë-âî ñòðàíèö: "; std::cin >> pages;
+    std::cout << "Ââåäèòå öåíó: "; std::cin >> price;
     std::cin.ignore();
 }

@@ -25,7 +25,7 @@ double StoreItem::getPrice() const {
     return price;
 }
 
-// Р¤СѓРЅРєС†РёСЏ, РІС‹Р·С‹РІР°СЋС‰Р°СЏ РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ print РґР»СЏ РЅСѓР¶РЅРѕРіРѕ РѕР±СЉРµРєС‚Р°
+// Функция, вызывающая виртуальный метод print для нужного объекта
 std::ostream& operator<<(std::ostream& os, const StoreItem& item) {
     item.print(os);
     return os;

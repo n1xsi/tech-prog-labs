@@ -17,7 +17,7 @@ public:
     Textbook(const Textbook& other);
     ~Textbook();
 
-    // Р РµР°Р»РёР·Р°С†РёСЏ РІРёСЂС‚СѓР°Р»СЊРЅС‹С… С„СѓРЅРєС†РёР№ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР°
+    // Реализация виртуальных функций базового класса
     void print(std::ostream& os) const override;
     void save(std::ofstream& fout) const override;
     void load(std::ifstream& fin) override;

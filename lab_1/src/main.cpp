@@ -9,21 +9,22 @@
 #include "../include/CustomException.h"
 
 void showMenu() {
-    std::cout << "\n======== ÐœÐµÐ½ÑŽ ========\n";
-    std::cout << "1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÐºÐ½Ð¸Ð³Ñƒ\n";
-    std::cout << "2. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑƒÑ‡ÐµÐ±Ð½Ð¸Ðº\n";
-    std::cout << "3. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÐºÐ°Ð½Ñ†ÐµÐ»ÑÑ€Ð¸ÑŽ\n";
-    std::cout << "4. ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð²ÑÐµ Ñ‚Ð¾Ð²Ð°Ñ€Ñ‹\n";
-    std::cout << "5. Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ñ‚Ð¾Ð²Ð°Ñ€ Ð¿Ð¾ Ð½Ð¾Ð¼ÐµÑ€Ñƒ\n";
-    std::cout << "6. Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð² Ñ„Ð°Ð¹Ð»\n";
-    std::cout << "7. Ð—Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°\n";
-    std::cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´\n";
-    std::cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸ÑŽ: ";
+    std::cout << "\n======== Ìåíþ ========\n";
+    std::cout << "1. Äîáàâèòü êíèãó\n";
+    std::cout << "2. Äîáàâèòü ó÷åáíèê\n";
+    std::cout << "3. Äîáàâèòü êàíöåëÿðèþ\n";
+    std::cout << "4. Ïîêàçàòü âñå òîâàðû\n";
+    std::cout << "5. Óäàëèòü òîâàð ïî íîìåðó\n";
+    std::cout << "6. Ñîõðàíèòü â ôàéë\n";
+    std::cout << "7. Çàãðóçèòü èç ôàéëà\n";
+    std::cout << "0. Âûõîä\n";
+    std::cout << "Âûáåðèòå îïöèþ: ";
 }
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    setlocale(LC_ALL, "Russian");
 
     Keeper keeper;
     int choice;
@@ -33,7 +34,7 @@ int main() {
         std::cin >> choice;
 
         if (std::cin.fail()) {
-            std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: Ð²Ð²ÐµÐ´ÐµÐ½Ð¾ Ð½Ðµ Ñ‡Ð¸ÑÐ»Ð¾. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°.\n";
+            std::cout << "Îøèáêà: ââåäåíî íå ÷èñëî. Ïîïðîáóéòå ñíîâà.\n";
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             choice = -1;
@@ -66,14 +67,14 @@ int main() {
                     break;
                 case 5: {
                     if (keeper.getSize() == 0) {
-                        std::cout << "ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³ Ð¿ÑƒÑÑ‚, ÑƒÐ´Ð°Ð»ÑÑ‚ÑŒ Ð½ÐµÑ‡ÐµÐ³Ð¾.\n";
+                        std::cout << "Êàòàëîã ïóñò, óäàëÿòü íå÷åãî.\n";
                         break;
                     }
-                    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ñ‚Ð¾Ð²Ð°Ñ€Ð° Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ (1-" << keeper.getSize() << "): ";
+                    std::cout << "Ââåäèòå íîìåð òîâàðà äëÿ óäàëåíèÿ (1-" << keeper.getSize() << "): ";
                     int index;
                     std::cin >> index;
                     keeper.remove(index - 1);
-                    std::cout << "Ð¢Ð¾Ð²Ð°Ñ€ #" << index << " ÑƒÐ´Ð°Ð»ÐµÐ½.\n";
+                    std::cout << "Òîâàð #" << index << " óäàëåí.\n";
                     break;
                 }
                 case 6:
@@ -83,16 +84,16 @@ int main() {
                     keeper.loadFromFile("data.txt");
                     break;
                 case 0:
-                    std::cout << "Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹...\n";
+                    std::cout << "Âûõîä èç ïðîãðàììû...\n";
                     break;
                 default:
-                    std::cout << "ÐÐµÐ²ÐµÑ€Ð½Ð°Ñ Ð¾Ð¿Ñ†Ð¸Ñ. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°.\n";
+                    std::cout << "Íåâåðíàÿ îïöèÿ. Ïîïðîáóéòå ñíîâà.\n";
                     break;
             }
         } catch (const CustomException& e) {
-            std::cerr << "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ°: " << e.what() << std::endl;
+            std::cerr << "Ïðîèçîøëà îøèáêà: " << e.what() << std::endl;
         } catch (...) {
-            std::cerr << "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð½ÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ð°Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°." << std::endl;
+            std::cerr << "Ïðîèçîøëà íåèçâåñòíàÿ îøèáêà." << std::endl;
         }
 
     } while (choice != 0);

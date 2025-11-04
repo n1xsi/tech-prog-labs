@@ -20,11 +20,11 @@ Stationery::~Stationery() {
 }
 
 void Stationery::print(std::ostream& os) const {
-    os << "ÐšÐ°Ð½Ñ†ÐµÐ»ÑÑ€Ð¸Ñ" << std::endl;
-    os << "Ð¢Ð¸Ð¿: " << type << std::endl;
-    os << "Ð¦Ð²ÐµÑ‚: " << color << std::endl;
-    os << "ÐÐ°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: " << purpose << std::endl;
-    os << "Ð¦ÐµÐ½Ð°: " << price << " â‚½" << std::endl;
+    os << "Êàíöåëÿðèÿ" << std::endl;
+    os << "Òèï: " << type << std::endl;
+    os << "Öâåò: " << color << std::endl;
+    os << "Íàçíà÷åíèå: " << purpose << std::endl;
+    os << "Öåíà: " << price << " ðóá." << std::endl;
 }
 
 StoreItem* Stationery::clone() const {
@@ -47,9 +47,9 @@ void Stationery::load(std::ifstream& fin) {
 }
 
 void Stationery::input() {
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ ÐºÐ°Ð½Ñ†ÐµÐ»ÑÑ€Ð¸Ð¸: "; std::getline(std::cin, type);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†Ð²ÐµÑ‚: "; std::getline(std::cin, color);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: "; std::getline(std::cin, purpose);
-    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ½Ñƒ: "; std::cin >> price;
+    std::cout << "Ââåäèòå òèï êàíöåëÿðèè: "; std::getline(std::cin, type);
+    std::cout << "Ââåäèòå öâåò: "; std::getline(std::cin, color);
+    std::cout << "Ââåäèòå íàçíà÷åíèå: "; std::getline(std::cin, purpose);
+    std::cout << "Ââåäèòå öåíó: "; std::cin >> price;
     std::cin.ignore();
 }
