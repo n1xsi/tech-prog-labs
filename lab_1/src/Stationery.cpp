@@ -27,6 +27,10 @@ void Stationery::print(std::ostream& os) const {
     os << "Цена: " << price << " ₽" << std::endl;
 }
 
+StoreItem* Stationery::clone() const {
+    return new Stationery(*this);
+}
+
 void Stationery::save(std::ofstream& fout) const {
     fout << type << std::endl;
     fout << color << std::endl;

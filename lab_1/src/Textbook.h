@@ -7,8 +7,8 @@ private:
     std::string title;
     std::string author;
     int year;
-    std::string institution;  // Для какого учебного заведения
-    int grade;                // Год обучения
+    std::string institution;
+    int grade;
     int pages;
 
 public:
@@ -17,6 +17,7 @@ public:
     Textbook(const Textbook& other);
     ~Textbook();
 
+    // Реализация виртуальных функций базового класса
     void print(std::ostream& os) const override;
     void save(std::ofstream& fout) const override;
     void load(std::ifstream& fin) override;

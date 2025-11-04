@@ -31,6 +31,11 @@ void Textbook::print(std::ostream& os) const {
     os << "Цена: " << price << " ₽" << std::endl;
 }
 
+StoreItem* Textbook::clone() const {
+    return new Textbook(*this);
+}
+
+
 void Textbook::save(std::ofstream& fout) const {
     fout << title << std::endl;
     fout << author << std::endl;
