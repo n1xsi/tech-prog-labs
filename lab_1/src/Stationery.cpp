@@ -1,4 +1,4 @@
-#include "Stationery.h"
+#include "../include/Stationery.h"
 #include <iostream>
 
 Stationery::Stationery() : StoreItem() {

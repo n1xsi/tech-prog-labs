@@ -1,4 +1,4 @@
-#include "StoreItem.h"
+#include "../include/StoreItem.h"
 
 StoreItem::StoreItem() : price(0.0) {
     std::cout << "StoreItem: Default constructor called." << std::endl;
