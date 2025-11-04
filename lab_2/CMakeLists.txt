@@ -10,7 +10,8 @@ add_executable(lab_2
         include/Train.h
         include/TrainSchedule.h
         src/main.cpp
-        src/main_task1.cpp
-        src/main_task2.cpp
+        src/task1.cpp
+        src/task2.cpp
         src/Train.cpp
-        src/TrainSchedule.cpp)
+        src/TrainSchedule.cpp
+        include/tasks.h)

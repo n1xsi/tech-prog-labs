@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <windows.h>
+#include "tasks.h"
 
 void findAndPrintQuotes(const std::string& text) {
     std::cout << "Найденные цитаты:" << std::endl;
@@ -28,16 +28,13 @@ void findAndPrintQuotes(const std::string& text) {
     }
 }
 
-int main() {
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-
+void runTask2() {
     std::string filename = "input.txt";
     std::ifstream inputFile(filename);
 
     if (!inputFile.is_open()) {
         std::cerr << "Ошибка: не удалось открыть файл '" << filename << "'" << std::endl;
-        return 1;
+        return;  // Если файла нет - выход из функции
     }
 
     std::cout << "Файл '" << filename << "' успешно открыт. Чтение содержимого..." << std::endl;
@@ -47,10 +44,8 @@ int main() {
     inputFile.close();
 
     if (fileContent.empty()) {
-        std::cout << "Файл пуст!" << std::endl;
+        std::cout << "Файл пуст." << std::endl;
     } else {
         findAndPrintQuotes(fileContent);
     }
-
-    return 0;
 }

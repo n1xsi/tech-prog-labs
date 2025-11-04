@@ -1,26 +1,24 @@
 #include <iostream>
-#include <windows.h>
 #include "TrainSchedule.h"
 #include "CustomException.h"
+#include "tasks.h"
 
-void showMenu() {
+void showTask1Menu() {
     std::cout << "\n===== Меню управления расписанием =====\n"
               << "1. Показать все поезда\n"
               << "2. Добавить поезд\n"
               << "3. Редактировать поезд по индексу\n"
               << "4. Удалить поезд по индексу\n"
               << "5. Найти поезда по пункту назначения\n"
-              << "0. Выход\n"
+              << "0. Вернуться в главное меню\n"
               << "=======================================\n"
               << "Ваш выбор: ";
 }
 
-int main() {
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
+void runTask1() {
     TrainSchedule schedule;
 
-    // Заполнение для примера
+    // Начальное заполнение для демонстрации
     schedule.addTrain(Train("Москва", 101, "09:30"));
     schedule.addTrain(Train("Моршанск", 25, "08:15"));
     schedule.addTrain(Train("Санкт-Петербург", 7, "14:00"));
@@ -28,14 +26,14 @@ int main() {
 
     int choice;
     do {
-        showMenu();
+        showTask1Menu();
         std::cin >> choice;
 
         if (std::cin.fail()) {
             std::cout << "Ошибка: введено не число. Попробуйте снова." << std::endl;
             std::cin.clear();
-            while (std::cin.get() != '\n');  // Очистка буфера ввода
-            choice = -1;                     // Чтобы цикл продолжился
+            while (std::cin.get() != '\n');
+            choice = -1;
             continue;
         }
 
@@ -49,7 +47,7 @@ int main() {
                     break;
                 case 3: {
                     if (schedule.getSize() == 0) {
-                        std::cout << "Расписание пусто - нечего редактировать." << std::endl;
+                        std::cout << "Расписание пусто, редактировать нечего." << std::endl;
                         break;
                     }
                     int index;
@@ -60,7 +58,7 @@ int main() {
                 }
                 case 4: {
                     if (schedule.getSize() == 0) {
-                        std::cout << "Расписание пусто - нечего удалять." << std::endl;
+                        std::cout << "Расписание пусто, удалять нечего." << std::endl;
                         break;
                     }
                     int index;
@@ -73,7 +71,7 @@ int main() {
                     schedule.findByDestination();
                     break;
                 case 0:
-                    std::cout << "Завершение программы." << std::endl;
+                    std::cout << "Возврат в главное меню." << std::endl;
                     break;
                 default:
                     std::cout << "Неверный выбор. Пожалуйста, попробуйте снова." << std::endl;
@@ -83,6 +81,4 @@ int main() {
             std::cerr << "Произошла ошибка: " << e.what() << std::endl;
         }
     } while (choice != 0);
-
-    return 0;
 }
