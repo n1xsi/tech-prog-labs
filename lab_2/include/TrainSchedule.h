@@ -1,8 +1,25 @@
-//
-// Created by Administrator on 04.11.2025.
-//
+#pragma once
+#include "Train.h"
 
-#ifndef LAB_2_TRAINSCHEDULE_H
-#define LAB_2_TRAINSCHEDULE_H
+class TrainSchedule {
 
-#endif //LAB_2_TRAINSCHEDULE_H
+private:
+    Train* trains;
+    int size;
+    int capacity;
+
+    void resize();
+
+public:
+    TrainSchedule();
+    ~TrainSchedule();
+
+    void addTrain();
+    void addTrain(const Train& train);
+    void deleteTrain(int index);
+    void editTrain(int index);
+    void displayAll() const;
+    void findByDestination() const;
+    int getSize() const;
+
+};
