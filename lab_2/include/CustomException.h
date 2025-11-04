@@ -2,7 +2,7 @@
 #include <exception>
 #include <string>
 
-// РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёР№ РєР»Р°СЃСЃ РґР»СЏ РёСЃРєР»СЋС‡РµРЅРёР№
+// Пользовательский класс для исключений
 class CustomException : public std::exception {
 
 private:

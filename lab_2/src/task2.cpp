@@ -4,7 +4,7 @@
 #include "tasks.h"
 
 void findAndPrintQuotes(const std::string& text) {
-    std::cout << "ÐÐ°Ð¹Ð´ÐµÐ½Ð½Ñ‹Ðµ Ñ†Ð¸Ñ‚Ð°Ñ‚Ñ‹:" << std::endl;
+    std::cout << "Íàéäåííûå öèòàòû:" << std::endl;
     std::cout << "-----------------" << std::endl;
 
     size_t startPos = 0;
@@ -24,7 +24,7 @@ void findAndPrintQuotes(const std::string& text) {
     }
 
     if (!found) {
-        std::cout << "Ð¦Ð¸Ñ‚Ð°Ñ‚Ñ‹ Ð² Ñ„Ð°Ð¹Ð»Ðµ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ñ‹." << std::endl;
+        std::cout << "Öèòàòû â ôàéëå íå íàéäåíû." << std::endl;
     }
 }
 
@@ -33,18 +33,18 @@ void runTask2() {
     std::ifstream inputFile(filename);
 
     if (!inputFile.is_open()) {
-        std::cerr << "ÐžÑˆÐ¸Ð±ÐºÐ°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð» '" << filename << "'" << std::endl;
-        return;  // Ð•ÑÐ»Ð¸ Ñ„Ð°Ð¹Ð»Ð° Ð½ÐµÑ‚ - Ð²Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸
+        std::cerr << "Îøèáêà: íå óäàëîñü îòêðûòü ôàéë '" << filename << "'" << std::endl;
+        return;  // Åñëè ôàéëà íåò - âûõîä èç ôóíêöèè
     }
 
-    std::cout << "Ð¤Ð°Ð¹Ð» '" << filename << "' ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚. Ð§Ñ‚ÐµÐ½Ð¸Ðµ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ð³Ð¾..." << std::endl;
+    std::cout << "Ôàéë '" << filename << "' óñïåøíî îòêðûò. ×òåíèå ñîäåðæèìîãî..." << std::endl;
 
     std::string fileContent((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
 
     inputFile.close();
 
     if (fileContent.empty()) {
-        std::cout << "Ð¤Ð°Ð¹Ð» Ð¿ÑƒÑÑ‚." << std::endl;
+        std::cout << "Ôàéë ïóñò." << std::endl;
     } else {
         findAndPrintQuotes(fileContent);
     }

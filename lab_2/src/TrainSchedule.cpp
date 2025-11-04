@@ -4,18 +4,18 @@
 #include <cstring>
 
 TrainSchedule::TrainSchedule() : trains(nullptr), size(0), capacity(2) {
-    std::cout << "  [DEBUG] РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° TrainSchedule" << std::endl;
+    std::cout << "  [DEBUG] Создание объекта TrainSchedule" << std::endl;
     trains = new Train[capacity];
 }
 
 TrainSchedule::~TrainSchedule() {
-    std::cout << "  [DEBUG] РЈРЅРёС‡С‚РѕР¶РµРЅРёРµ РѕР±СЉРµРєС‚Р° TrainSchedule" << std::endl;
+    std::cout << "  [DEBUG] Уничтожение объекта TrainSchedule" << std::endl;
     delete[] trains;
 }
 
 void TrainSchedule::resize() {
     capacity *= 2;
-    std::cout << "  [DEBUG] РЈРІРµР»РёС‡РµРЅРёРµ РІРјРµСЃС‚РёРјРѕСЃС‚Рё РјР°СЃСЃРёРІР° РґРѕ " << capacity << std::endl;
+    std::cout << "  [DEBUG] Увеличение вместимости массива до " << capacity << std::endl;
     Train* newTrains = new Train[capacity];
     for (int i = 0; i < size; ++i) {
         newTrains[i] = trains[i];
@@ -31,7 +31,7 @@ void TrainSchedule::addTrain() {
         addTrain(newTrain);
     }
     catch (const CustomException& e) {
-        std::cerr << "РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ: " << e.what() << std::endl;
+        std::cerr << "Ошибка добавления: " << e.what() << std::endl;
     }
 }
 
@@ -40,7 +40,7 @@ void TrainSchedule::addTrain(const Train& newTrain) {
         resize();
     }
 
-    // РџРѕРёСЃРє РїРѕР·РёС†РёРё РґР»СЏ РІСЃС‚Р°РІРєРё РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ РІСЂРµРјРµРЅРё
+    // Поиск позиции для вставки для сохранения сортировки по времени
     int insert_pos = 0;
     while (insert_pos < size && strcmp(trains[insert_pos].getDepartureTime(), newTrain.getDepartureTime()) < 0) {
         insert_pos++;
@@ -52,43 +52,43 @@ void TrainSchedule::addTrain(const Train& newTrain) {
 
     trains[insert_pos] = newTrain;
     size++;
-    std::cout << "РџРѕРµР·Рґ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ РІ СЂР°СЃРїРёСЃР°РЅРёРµ." << std::endl;
+    std::cout << "Поезд успешно добавлен в расписание." << std::endl;
 }
 
 void TrainSchedule::deleteTrain(int index) {
     if (index < 0 || index >= size) {
-        throw CustomException("РќРµРІРµСЂРЅС‹Р№ РёРЅРґРµРєСЃ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ!");
+        throw CustomException("Неверный индекс для удаления!");
     }
 
     for (int i = index; i < size - 1; ++i) {
         trains[i] = trains[i + 1];
     }
     size--;
-    std::cout << "Р—Р°РїРёСЃСЊ РїРѕ РёРЅРґРµРєСЃСѓ " << index << " СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°." << std::endl;
+    std::cout << "Запись по индексу " << index << " успешно удалена." << std::endl;
 }
 
 void TrainSchedule::editTrain(int index) {
     if (index < 0 || index >= size) {
-        throw CustomException("РќРµРІРµСЂРЅС‹Р№ РёРЅРґРµРєСЃ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ!");
+        throw CustomException("Неверный индекс для редактирования!");
     }
-    std::cout << "==== Р’РІРѕРґ РЅРѕРІС‹С… РґР°РЅРЅС‹С… РґР»СЏ РїРѕРµР·РґР° (РёРЅРґРµРєСЃ " << index << ") ====" << std::endl;
+    std::cout << "==== Ввод новых данных для поезда (индекс " << index << ") ====" << std::endl;
     Train editedTrain;
     try {
         std::cin >> editedTrain;
-        // РЈРґР°Р»СЏРµРј СЃС‚Р°СЂСѓСЋ Р·Р°РїРёСЃСЊ Рё РґРѕР±Р°РІР»СЏРµРј РЅРѕРІСѓСЋ, С‡С‚РѕР±С‹ СЃРѕС…СЂР°РЅРёС‚СЊ СЃРѕСЂС‚РёСЂРѕРІРєСѓ
+        // Удаляем старую запись и добавляем новую, чтобы сохранить сортировку
         deleteTrain(index);
         addTrain(editedTrain);
-        std::cout << "Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅР°." << std::endl;
+        std::cout << "Запись успешно отредактирована." << std::endl;
     }
     catch (const CustomException& e) {
-        std::cerr << "РћС€РёР±РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ: " << e.what() << std::endl;
+        std::cerr << "Ошибка редактирования: " << e.what() << std::endl;
     }
 }
 
 void TrainSchedule::displayAll() const {
-    std::cout << "\n----> РўРµРєСѓС‰РµРµ СЂР°СЃРїРёСЃР°РЅРёРµ РїРѕРµР·РґРѕРІ <----" << std::endl;
+    std::cout << "\n----> Текущее расписание поездов <----" << std::endl;
     if (size == 0) {
-        std::cout << "Р Р°СЃРїРёСЃР°РЅРёРµ РїСѓСЃС‚Рѕ." << std::endl;
+        std::cout << "Расписание пусто." << std::endl;
         return;
     }
     for (int i = 0; i < size; ++i) {
@@ -99,10 +99,10 @@ void TrainSchedule::displayAll() const {
 
 void TrainSchedule::findByDestination() const {
     char dest_buf[100];
-    std::cout << "\nР’РІРµРґРёС‚Рµ РїСѓРЅРєС‚ РЅР°Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ РїРѕРёСЃРєР°: ";
+    std::cout << "\nВведите пункт назначения для поиска: ";
     std::cin >> dest_buf;
 
-    std::cout << "<---> РџРѕРµР·РґР°, СЃР»РµРґСѓСЋС‰РёРµ РІ Рі. " << dest_buf << " <--->" << std::endl;
+    std::cout << "<---> Поезда, следующие в г. " << dest_buf << " <--->" << std::endl;
     bool found = false;
     for (int i = 0; i < size; ++i) {
         if (strcmp(trains[i].getDestination(), dest_buf) == 0) {
@@ -112,7 +112,7 @@ void TrainSchedule::findByDestination() const {
     }
 
     if (!found) {
-        std::cout << "РџРѕРµР·РґРѕРІ РІ РґР°РЅРЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё РЅРµ РЅР°Р№РґРµРЅРѕ." << std::endl;
+        std::cout << "Поездов в данном направлении не найдено." << std::endl;
     }
     std::cout << "------------------------------------" << std::endl;
 }

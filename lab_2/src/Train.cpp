@@ -4,7 +4,7 @@
 #include <cstring>
 #include "CustomException.h"
 
-// РџСЂРёРІР°С‚РЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РґР°РЅРЅС‹С… (РёР·Р±РµРіР°РЅРёРµ DRY)
+// Приватный метод для копирования данных (избегание DRY)
 void Train::copy(const Train& other) {
     this->destination = new char[strlen(other.destination) + 1];
     strcpy(this->destination, other.destination);
@@ -16,7 +16,7 @@ void Train::copy(const Train& other) {
 }
 
 Train::Train() : destination(nullptr), trainNumber(0), departureTime(nullptr) {
-    std::cout << "  [DEBUG] Р’С‹Р·РІР°РЅ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Train" << std::endl;
+    std::cout << "  [DEBUG] Вызван конструктор по умолчанию Train" << std::endl;
     destination = new char[8];
     strcpy(destination, "Unknown");
     departureTime = new char[6];
@@ -24,7 +24,7 @@ Train::Train() : destination(nullptr), trainNumber(0), departureTime(nullptr) {
 }
 
 Train::Train(const char* dest, int num, const char* time) {
-    std::cout << "  [DEBUG] Р’С‹Р·РІР°РЅ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё Train РґР»СЏ РїРѕРµР·РґР° N" << num << std::endl;
+    std::cout << "  [DEBUG] Вызван конструктор с параметрами Train для поезда N" << num << std::endl;
     destination = new char[strlen(dest) + 1];
     strcpy(destination, dest);
     trainNumber = num;
@@ -33,18 +33,18 @@ Train::Train(const char* dest, int num, const char* time) {
 }
 
 Train::Train(const Train& other) {
-    std::cout << "  [DEBUG] Р’С‹Р·РІР°РЅ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ Train РґР»СЏ РїРѕРµР·РґР° N" << other.trainNumber << std::endl;
+    std::cout << "  [DEBUG] Вызван конструктор копирования Train для поезда N" << other.trainNumber << std::endl;
     copy(other);
 }
 
 Train::~Train() {
-    std::cout << "  [DEBUG] Р’С‹Р·РІР°РЅ РґРµСЃС‚СЂСѓРєС‚РѕСЂ Train РґР»СЏ РїРѕРµР·РґР° N" << trainNumber << std::endl;
+    std::cout << "  [DEBUG] Вызван деструктор Train для поезда N" << trainNumber << std::endl;
     delete[] destination;
     delete[] departureTime;
 }
 
 Train& Train::operator=(const Train& other) {
-    std::cout << "  [DEBUG] Р’С‹Р·РІР°РЅ РѕРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ Train РґР»СЏ РїРѕРµР·РґР° N" << other.trainNumber << std::endl;
+    std::cout << "  [DEBUG] Вызван оператор присваивания Train для поезда N" << other.trainNumber << std::endl;
     if (this != &other) {
         delete[] destination;
         delete[] departureTime;
@@ -69,7 +69,7 @@ void Train::setTrainNumber(int num) {
 
 void Train::setDepartureTime(const char* time) {
     if (strlen(time) != 5 || time[2] != ':') {
-        throw CustomException("РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РІСЂРµРјРµРЅРё, РѕР¶РёРґР°Р»РѕСЃСЊ Р§Р§:РњРњ");
+        throw CustomException("Неверный формат времени, ожидалось ЧЧ:ММ");
     }
     delete[] departureTime;
     departureTime = new char[strlen(time) + 1];
@@ -77,8 +77,8 @@ void Train::setDepartureTime(const char* time) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Train& train) {
-    os << "РџРѕРµР·Рґ N" << train.trainNumber << " | РџСѓРЅРєС‚ РЅР°Р·РЅР°С‡РµРЅРёСЏ: " << train.destination
-       << " | Р’СЂРµРјСЏ РѕС‚РїСЂР°РІР»РµРЅРёСЏ: " << train.departureTime;
+    os << "Поезд N" << train.trainNumber << " | Пункт назначения: " << train.destination
+       << " | Время отправления: " << train.departureTime;
     return os;
 }
 
@@ -86,15 +86,15 @@ std::istream& operator>>(std::istream& is, Train& train) {
     char dest_buf[100];
     char time_buf[6];
 
-    std::cout << "Р’РІРµРґРёС‚Рµ РїСѓРЅРєС‚ РЅР°Р·РЅР°С‡РµРЅРёСЏ: ";
+    std::cout << "Введите пункт назначения: ";
     is >> dest_buf;
-    std::cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РїРѕРµР·РґР°: ";
+    std::cout << "Введите номер поезда: ";
     is >> train.trainNumber;
-    std::cout << "Р’РІРµРґРёС‚Рµ РІСЂРµРјСЏ РѕС‚РїСЂР°РІР»РµРЅРёСЏ (Р§Р§:РњРњ): ";
+    std::cout << "Введите время отправления (ЧЧ:ММ): ";
     is >> time_buf;
 
     train.setDestination(dest_buf);
-    train.setDepartureTime(time_buf);  // РЎРµС‚С‚РµСЂ РґР»СЏ РІР°Р»РёРґР°С†РёРё
+    train.setDepartureTime(time_buf);  // Сеттер для валидации
 
     return is;
 }

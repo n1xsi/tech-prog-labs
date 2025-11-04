@@ -6,21 +6,21 @@ class Train {
 private:
     char* destination;
     int trainNumber;
-    char* departureTime;  // Р¤РѕСЂРјР°С‚ "Р§Р§:РњРњ"
+    char* departureTime;  // Формат "ЧЧ:ММ"
 
     void copy(const Train& other);
 
 public:
-    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+    // Конструкторы и деструктор
     Train();
     Train(const char* dest, int num, const char* time);
     Train(const Train& other);
     ~Train();
 
-    // РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
+    // Оператор присваивания
     Train& operator=(const Train& other);
 
-    // РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР° (getters Рё setters)
+    // Методы доступа (getters и setters)
     const char* getDestination() const;
     int getTrainNumber() const;
     const char* getDepartureTime() const;
@@ -29,7 +29,7 @@ public:
     void setTrainNumber(int num);
     void setDepartureTime(const char* time);
 
-    // Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅС‹Рµ С„СѓРЅРєС†РёРё РґР»СЏ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂРѕРІ РІРІРѕРґР°/РІС‹РІРѕРґР°
+    // Дружественные функции для перегрузки операторов ввода/вывода
     friend std::ostream& operator<<(std::ostream& os, const Train& train);
     friend std::istream& operator>>(std::istream& is, Train& train);
 
