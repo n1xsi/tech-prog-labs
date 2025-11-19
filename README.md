@@ -4,9 +4,9 @@
   
   "Технология программирования".
 
-  ![C++](https://img.shields.io/badge/C++-202020?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-  ![CLion](https://img.shields.io/badge/CLion-202020?style=for-the-badge&logo=clion&logoColor=16b9e2)
-  ![GitHub](https://img.shields.io/badge/GitHub-202020?style=for-the-badge&logo=github&logoColor=white)
+  [![C++](https://img.shields.io/badge/C++-202020?style=for-the-badge&logo=c%2B%2B&logoColor=white)](#)
+  [![CLion](https://img.shields.io/badge/CLion-202020?style=for-the-badge&logo=clion&logoColor=16b9e2)](#)
+  [![GitHub](https://img.shields.io/badge/GitHub-202020?style=for-the-badge&logo=github&logoColor=white)](#)
   
 </h1>
 
